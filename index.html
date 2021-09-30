@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript Validation</title>
+</head>
+<style>
+    body {
+        background-image: url(https://cutewallpaper.org/21/basic-backgrounds/90-Simple-Backgrounds-Edit-and-Download-Visual-Learning-.jpg);
+    }
+
+    .footer {
+        position: fixed;
+        text-align: center;
+        bottom: 0px;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <h2 ALIGN="CENTER">Javascript Validation</h2>
+    <form name="jsvalidation" onsubmit="return(validate());">
+        <table bgcolor="#FFC0CB" align="center" cellpadding="5">
+            <tr>
+                <td>Product ID: </td>
+                <td><input type=text name="ptext" id="ptext" size="4">
+                    -
+                    <input type="text" name="pcode" id="pcode" size="8">
+                </td>
+            </tr>
+            <tr>
+                <td>Product Name: </td>
+                <td><input type="text" name="pname" id="prodname" size="30"></td>
+            </tr>
+            <tr>
+                <td>Quantity: </td>
+                <td><select name="quant" onchange="total()">
+                        <option value="-1" selected>Maximum only 10</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select></td>
+            </tr>
+
+            <tr>
+                <td>Price: </td>
+                <td><input type="text" name="prize" id="prixx" size="30" onchange="total()"></td>
+            </tr>
+
+            <tr>
+                <td>Total Value: </td>
+                <td><input type="text" name="tval" id="totalvalue" size="30" readonly></td>
+            </tr>
+
+            <tr>
+                <td>Date of purchase: </td>
+                <td><input type="date" name="date" id="date" size="30"></td>
+            </tr>
+
+            <tr>
+                <td>EmailId: </td>
+                <td><input type="text" name="emailid" id="emailid" size="30"></td>
+            </tr>
+
+            <tr>
+                <td>MobileNo: </td>
+                <td><input type="text" name="mobileno" id="mobileno" size="30"></td>
+            </tr>
+            <tr>
+                <td><input type="reset"></td>
+                <td colspan="2"><input type="submit" value="Submit Form" /></td>
+            </tr>
+        </table>
+    </form>
+    <div class="footer">Designed By Edula Vinay Kumar Reddy</div>
+    <br>
+    <div align="center">
+        <a href="purchase.html"><b>GO TO PURCHASE FORM</b></a>
+    </div>
+    <script type="text/javascript">
+        function total() {
+            var quan = document.jsvalidation.quant.value;
+            var pri = document.jsvalidation.prize.value;
+            if (pri < 100 || pri > 9999 || pri == "" || isNaN(document.jsvalidation.prize.value) || pri == null) {
+                document.jsvalidation.tval.value = "Invalid Price Range!";
+            }
+            else if (quan == (-1)) {
+                document.jsvalidation.tval.value = "Select Quantity!";
+            }
+            else {
+                var result = pri * quan;
+                document.jsvalidation.tval.value = result;
+            }
+        }
+        total();
+        function validate() {
+            var p1 = document.jsvalidation.ptext.value
+            var p2 = document.jsvalidation.pcode.value
+            var rex = /[A-Z]{3}$/;
+            var rex1 = /[0-9]{6}$/;
+            if (!p1.match(rex)) {
+                alert("INVALID PRODUCT TEXT");
+                if (document.jsvalidation.ptext.focus());
+                return false;
+            }
+            if (!p2.match(rex1)) {
+                alert("INVALID PRODUCT CODE");
+                if (document.jsvalidation.pcode.focus());
+                return false;
+            }
+
+            var pn = document.jsvalidation.pname.value
+            if (pn.length == 0) {
+                alert("Product Name can't be Empty!");
+                if (document.jsvalidation.pname.focus());
+                return false;
+            }
+            if (pn.length > 50) {
+                alert("Maximum length for product name is 50");
+                if (document.jsvalidation.pname.focus());
+                return false;
+            }
+
+            var quan = document.jsvalidation.quant.value
+            if (quan == (-1)) {
+                alert("Select a quantity from 1 to 10!");
+                if (document.jsvalidation.quant.focus());
+                return false;
+            }
+
+            var pri = document.jsvalidation.prize.value
+            if (pri < 100 || pri > 9999 || pri == "" || isNaN(document.jsvalidation.prize.value) || pri == null) {
+                alert("Select price from 100 to 9999!");
+                if (document.jsvalidation.prize.focus());
+                return false;
+            }
+
+            var dat = document.jsvalidation.date.value
+            if (dat == "" || dat == null) {
+                alert("Date should'nt be empty");
+                if (document.jsvalidation.date.focus());
+                return false;
+            }
+
+            var email = document.jsvalidation.emailid.value;
+            atpos = email.indexOf("@");
+            dotpos = email.lastIndexOf(".");
+            if (email == "" || atpos < 1 || (dotpos - atpos < 2)) {
+                alert("ENTER THE CORRECT EMAIL");
+                if (document.jsvalidation.emailid.focus());
+                return false;
+            }
+
+            if ((document.jsvalidation.mobileno.value == "") || isNaN(document.jsvalidation.mobileno.value) || document.jsvalidation.mobileno.value.length != 10) {
+                alert("ENTER THE CORRECT MOBILE NO");
+                if (document.jsvalidation.mobileno.focus());
+                return false;
+            }
+
+        }
+
+
+    </script>
+
+
+
+</body>
+
+</html>

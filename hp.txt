@@ -1,0 +1,6 @@
+10th Generation Intel® Core™ i5-10200H (8MB Cache, up to 4.1 GHz, 4 cores)
+Windows 10 Home Single Language, English
+NVIDIA® GeForce RTX™ 3050 4GB GDDR6
+16GB, 2x8GB, DDR4, 2933MHz
+512GB M.2 PCIe NVMe Solid State Drive
+Dark Shadow Grey

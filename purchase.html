@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Purchase Form</title>
+    <style type="text/css">
+        .btn {
+            background-color: crimson;
+            border: 2px solid black;
+            border-radius: 8px;
+        }
+
+        .btn:hover:enabled {
+            background-color: rgb(255, 0, 51);
+        }
+
+        body {
+            background-image: url(https://cutewallpaper.org/21/basic-backgrounds/90-Simple-Backgrounds-Edit-and-Download-Visual-Learning-.jpg);
+        }
+
+        .footer {
+            position: fixed;
+            text-align: center;
+            bottom: 0px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 ALIGN="CENTER">Purchase Form</h2>
+    <form name="jsvalidation" action="checkout.html" method="get" onsubmit="return(validate());">
+        <table bgcolor="#FFC0CB" align="center" cellpadding="5">
+            <tr>
+                <td>Product ID: </td>
+                <td>
+                    <select name="prodid" id="prodid">
+                        <option value="0">Select Product ID</option>
+                        <option value="1">VIN-000001</option>
+                        <option value="2">VIN-000002</option>
+                        <option value="3">VIN-000003</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Product Name: </td>
+                <td><input type="text" name="pname" id="prodname" size="30" readonly></td>
+            </tr>
+            <tr>
+                <td>Quantity: </td>
+                <td><select name="quant" required>
+                        <option value="0" selected>Maximum only 10</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div align="center">
+                        <h3>Total price is:
+                            <b id="finalresult"></b>
+                        </h3>
+                    </div>
+                    <input type="hidden" id="total" name="total" value="0">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" id="submit" class="btn" value="Proceed to Checkout" style="height: 30px;">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <div class="footer">Designed By Edula Vinay Kumar Reddy</div>
+    <script>
+        var form = document.forms.jsvalidation;
+        form.prodid.onchange = calculate;
+        form.quant.onchange = calculate;
+
+        function calculate() {
+            var cost = 0;
+            if (document.jsvalidation.prodid.value == 0) {
+                document.jsvalidation.pname.value = "Select Prod-ID";
+                var cost = 1500;
+            }
+            else if (document.jsvalidation.prodid.value == 1) {
+                document.jsvalidation.pname.value = "Vostro 15 3500 Laptop";
+                var cost = 1500;
+            }
+            else if (document.jsvalidation.prodid.value == 2) {
+                document.jsvalidation.pname.value = "ALIENWARE M15 R6 GAMING LAPTOP";
+                var cost = 2000;
+            }
+            else if (document.jsvalidation.prodid.value == 3) {
+                document.jsvalidation.pname.value = "G15 Gaming Laptop";
+                var cost = 2500;
+            }
+            var x = parseInt(document.jsvalidation.quant.value)
+            var result = x * cost;
+            document.jsvalidation.total.value = result;
+            document.getElementById('finalresult').innerHTML = result;
+            if (document.jsvalidation.prodid.value == 0 || document.jsvalidation.quant.value == 0) {
+                document.getElementById("submit").disabled = true;
+            }
+            else {
+                document.getElementById("submit").disabled = false;
+            }
+        }
+        calculate();
+    </script>
+</body>
+
+</html>

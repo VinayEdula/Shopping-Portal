@@ -1,0 +1,195 @@
+<html>
+
+<head>
+    <title>Checkout Page</title>
+    <style>
+        body {
+            background-image: url(https://cutewallpaper.org/21/basic-backgrounds/90-Simple-Backgrounds-Edit-and-Download-Visual-Learning-.jpg);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 220px;
+            font-size: 120%;
+        }
+
+        .btn {
+            background-color: crimson;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+        .btn:hover:enabled {
+            background-color: rgb(255, 0, 51);
+        }
+
+        .footer {
+            position: fixed;
+            text-align: center;
+            bottom: 0px;
+            width: 100%;
+        }
+    </style>
+    <script>
+
+        var XMLHttpRequestObject = false;
+        if (window.XMLHttpRequest) {
+            XMLHttpRequestObject = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        function getData(dataSource, divID) {
+            if (XMLHttpRequestObject) {
+                var obj = document.getElementById(divID);
+                XMLHttpRequestObject.open("GET", dataSource);
+
+                XMLHttpRequestObject.onreadystatechange = function () {
+                    if (XMLHttpRequestObject.readyState == 4 && XMLHttpRequestObject.status == 200) {
+                        obj.innerHTML = XMLHttpRequestObject.responseText;
+                    }
+                }
+                XMLHttpRequestObject.send(null);
+            }
+        }
+        function myFunction() {
+            alert("Payment Successful");
+        }
+    </script>
+</head>
+
+<body>
+
+    <h1 style="text-align:center;">Checkout Page</h1>
+    <form>
+        <img class="img" width="376" height="500" src="lp6.png" onmouseover="getData('lenovo.txt', 'targetDiv')"
+            style="margin-left: 20px;float: left;">
+        <img class="img" width="376" height="500" src="lp5.png" onmouseover="getData('hp.txt', 'targetDiv')"
+            style="margin-left: 20px;float: left;">
+        <img class="img" width="400" height="500" src="lp3.png" onmouseover="getData('dell.txt', 'targetDiv')"
+            style="margin-left: 20px;float: left;margin-right: 70px;">
+
+
+
+    </form>
+    <br><br>
+    <h3>
+        &emsp;
+        Payment Options
+    </h3>
+    <form style="border-left: 20px;" name="payment_options">
+        <table style="background-color: rgb(216, 216, 216);">
+            <tr>
+                <td>
+                    <input type="radio" id="Card" name="pay" value="Card" onclick="clickFunction()">💳 Card
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" id="Netbanking" name="pay" value="Netbanking" onclick="clickFunction()">
+                    🏛&nbsp; Netbanking
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" id="Wallet" name="pay" value="Wallet" onclick="clickFunction()"> <img
+                        src="wallet.png" width="25px">
+                    &nbsp;Wallet
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" id="UPI" name="pay" value="UPI" onclick="clickFunction()"> <img src="qrcode.png"
+                        width="25px">&nbsp;UPI/QR
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;<img src="emi.png" width="25px">&nbsp;
+                    <select name="emi" id="EMI" style="font-size:90%;width: 170px;" onchange="clickFunction()">
+                        <option value="0">EMI</option>
+                        <option value="3">3 Months (10%)</option>
+                        <option value="6">6 Months (12.5%)</option>
+                        <option value="9">9 Months (15%)</option>
+                        <option value="12">12 Months (20%)</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <div>
+        <h4>Pay <b style="color: crimson;">Rs. </b><b id="cost"></b> by <b id="payment_method"></b>!</h>
+    </div>
+    <input type="button" class="btn" value="Pay" name="pay" id="pay" style="margin-left: 70px;width: 50px;height:30px;"
+        onclick="myFunction()">
+    <br><br><br><br><br><br><br>
+    <h3 style="margin-left: 200px;margin-right: 200px;">
+        <div id="targetDiv" style="text-align:center;">
+        </div>
+    </h3>
+    <div class="footer">Designed By Edula Vinay Kumar Reddy</div>
+    <script>
+        function clickFunction() {
+            if (document.getElementById('Card').checked) {
+                document.getElementById('cost').innerHTML = 60000;
+                document.getElementById('payment_method').innerHTML = "Card";
+                document.getElementById("pay").disabled = false;
+                document.getElementById("EMI").disabled = true;
+            }
+            else if (document.getElementById('Netbanking').checked) {
+                document.getElementById('cost').innerHTML = 60000;
+                document.getElementById('payment_method').innerHTML = "Net Banking";
+                document.getElementById("pay").disabled = false;
+                document.getElementById("EMI").disabled = true;
+            }
+            else if (document.getElementById('Wallet').checked) {
+                document.getElementById('cost').innerHTML = 60000;
+                document.getElementById('payment_method').innerHTML = "Wallet";
+                document.getElementById("pay").disabled = false;
+                document.getElementById("EMI").disabled = true;
+            }
+            else if (document.getElementById('UPI').checked) {
+                document.getElementById('cost').innerHTML = 60000;
+                document.getElementById('payment_method').innerHTML = "UPI";
+                document.getElementById("pay").disabled = false;
+                document.getElementById("EMI").disabled = true;
+            }
+            else if (document.payment_options.emi.value == 3) {
+                document.getElementById('cost').innerHTML = "18656/Month";
+                document.getElementById('payment_method').innerHTML = "EMI";
+                document.getElementById("pay").disabled = false;
+
+            }
+            else if (document.payment_options.emi.value == 6) {
+                document.getElementById('cost').innerHTML = "19075/Month";
+                document.getElementById('payment_method').innerHTML = "EMI";
+                document.getElementById("pay").disabled = false;
+
+            }
+            else if (document.payment_options.emi.value == 9) {
+                document.getElementById('cost').innerHTML = "13277/Month";
+                document.getElementById('payment_method').innerHTML = "EMI";
+                document.getElementById("pay").disabled = false;
+
+            }
+            else if (document.payment_options.emi.value == 12) {
+                document.getElementById('cost').innerHTML = "13400/Month";
+                document.getElementById('payment_method').innerHTML = "EMI";
+                document.getElementById("pay").disabled = false;
+
+            }
+            else {
+                document.getElementById("pay").disabled = true;
+                document.getElementById("EMI").disabled = false;
+            }
+        }
+        clickFunction();
+    </script>
+</body>
+
+</html>
